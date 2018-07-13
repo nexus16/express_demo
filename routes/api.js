@@ -48,6 +48,7 @@ router.post('/signin', function(req, res) {
                 if(isMatch && !err) {
                     var token = jwt.sign(user.toObject(), config.secret);
                     res.json({success: true, token: "JWT "+token});
+
                 } else {
                     res.status(401).send({success: false, mgs: 'Authentication false'});
                 }
