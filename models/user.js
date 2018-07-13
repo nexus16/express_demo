@@ -9,7 +9,7 @@ var UserSChema = new Schema({
         required: true
     },
     password: {
-        type: string,
+        type: String,
         required: true
     }
 });
@@ -33,5 +33,14 @@ UserSChema.pre('save', function (next) {
         return next();
     }
 });
+
+UserSChema.methods.comparePassword = function(password, callbackFunc) {
+    bcrypt.compare(password, this.password, function(err, isMatch) {
+        if(err) {
+            return callbackFunc(err);
+        }
+        callbackFunc(null, isMatch);
+    })
+}
 
 module.exports = mongoose.model("User", UserSChema);

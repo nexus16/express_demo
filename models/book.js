@@ -7,11 +7,11 @@ var BookSchema = new Schema({
         required: true
     },
     title: {
-        type: string,
+        type: String,
         required: true
     },
     author: {
-        type: string,
+        type: String,
         required: true
     },
     publisher: {
